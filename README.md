@@ -40,3 +40,35 @@ Este proyecto incluye un bot básico que se conecta a WhatsApp utilizando la lib
    ```bash
    python whatsapp_bot.py
    ```
+
+## Docker
+
+Puedes levantar el proyecto dentro de un contenedor Docker.
+
+### Construir la imagen
+
+```bash
+docker build -t botai .
+```
+
+### Ejecutar el script interactivo
+
+```bash
+docker run --rm -it \
+  -e OPENAI_API_KEY="tu_api_key_aqui" \
+  -v $(pwd)/archivo1.txt:/app/archivo1.txt \
+  -v $(pwd)/archivo2.txt:/app/archivo2.txt \
+  botai
+```
+
+### Usar docker-compose
+
+```bash
+OPENAI_API_KEY=tu_api_key docker compose run script
+```
+
+Para iniciar el bot de WhatsApp:
+
+```bash
+OPENAI_API_KEY=tu_api_key WHATSAPP_LOGIN=numero WHATSAPP_PASSWORD=pass docker compose up whatsapp
+```
