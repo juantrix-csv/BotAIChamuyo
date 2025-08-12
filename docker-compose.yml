@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  script:
+    build: .
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ./archivo1.txt:/app/archivo1.txt
+      - ./archivo2.txt:/app/archivo2.txt
+    tty: true
+    stdin_open: true
+    command: python script.py
+
+  whatsapp:
+    build: .
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      WHATSAPP_LOGIN: ${WHATSAPP_LOGIN}
+      WHATSAPP_PASSWORD: ${WHATSAPP_PASSWORD}
+    volumes:
+      - ./archivo1.txt:/app/archivo1.txt
+      - ./archivo2.txt:/app/archivo2.txt
+    command: python whatsapp_bot.py
+    restart: unless-stopped
